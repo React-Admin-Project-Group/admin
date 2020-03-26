@@ -66,3 +66,8 @@ src目录下->:
 
 - 安装：npm install react-router-dom
 - 
+
+### 网络请求
+
+- 安装：npm install axios
+- 请求拦截：在utils目录下的axios.js配置
