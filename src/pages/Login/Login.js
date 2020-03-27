@@ -3,14 +3,43 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import style from './Login.module.less'
 import imgUrl from '../../static/admin-login-bg.jpg'
+import AdminApi from '../../api/adminApi'
+import { message }  from 'antd'
 export default class Login extends Component {
   onFinish = values => {
-    console.log('Received values of form: ', values);
-  };
+    // console.log('Received values of form: ', values);
+    const { username, password } = values
+    this.login(username, password)
+  }
+  onFinishFailed = errorInfo => {
+    console.log('Failed:', errorInfo)
+  }
+
+  login = (username, password) => {
+    AdminApi.adminLogin(username, password)
+      .then((result) => {
+        const { code, msg } = result
+        if (code === 20002) {
+          message.error(msg)
+        }
+        if (code === 1) {
+          // 登录成功
+          this.setLoginInfo(result.list)
+          this.props.history.replace('/admin/main')
+        }
+      })
+      .catch(err => {
+        console.log('err:', err)
+      })
+  }
+
+  setLoginInfo (list) {
+    localStorage.setItem('loginInfo', JSON.stringify(list))
+  }
   render() {
     return (
       <div className={style.wrapper}>
-        <img src={imgUrl} className={style.bg}></img>
+        <img src={imgUrl} className={style.bg} alt='背景图'></img>
         <div className={style.title}>
           <h1>下厨房 后台管理系统</h1>
         </div>
@@ -40,11 +69,9 @@ export default class Login extends Component {
             <Checkbox>使我保持登录状态</Checkbox>
             {/* 登录 */}
             <Form.Item>
-              <Button type="primary" htmlType="submit" className={style.button} onClick={()=>{
-                this.props.history.replace('/admin/main')
-              }}>
+              <Button type="primary" htmlType="submit" className={style.button}>
                 登录
-        </Button>
+              </Button> 
               <Button className={style.button}>取消</Button>
             </Form.Item>
           </Form>
