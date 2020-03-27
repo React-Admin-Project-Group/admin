@@ -11,7 +11,9 @@ export default class PageRouter extends Component {
       <Fragment>
         <HashRouter>
           <Switch>
+            {/* 登录页面 */}
             <Route path='/login' component={ Login }></Route>
+            {/* 这里是管理页面 */}
             <Route path='/admin' render={() => {
               return (
                 <Fragment>
