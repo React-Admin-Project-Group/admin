@@ -1,9 +1,9 @@
 import React from 'react';
-
+import PageRouter from './router/PageRouter'
 function App() {
   return (
     <div className="App">
-      APP
+      <PageRouter></PageRouter>
     </div>
   );
 }

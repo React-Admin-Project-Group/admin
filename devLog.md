@@ -65,6 +65,21 @@ src目录下->:
 ### 页面路由
 
 - 安装：npm install react-router-dom
+
+- 创建路由表
+
+- 路由结构
+
+  ```
+  一级路由----> 登录页 /login
+  	   ----> 首页  /admin/main 页面首页
+  	   					  ----> administrator 管理员页面
+  	   
+  ```
+
+### 页面布局
+
+- 选用一个layout, 放到main页面
 - 
 
 ### 网络请求
