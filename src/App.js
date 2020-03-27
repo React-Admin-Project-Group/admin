@@ -1,8 +1,9 @@
 import React from 'react';
 import PageRouter from './router/PageRouter'
+import Style from './app.module.less'
 function App() {
   return (
-    <div className="App">
+    <div className={Style.app}>
       <PageRouter></PageRouter>
     </div>
   );

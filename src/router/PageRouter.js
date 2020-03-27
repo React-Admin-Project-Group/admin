@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react'
 import Login from '../pages/Login/Login'
 import Main from '../pages/Main/Main'
 import Administrator from '../pages/Administrator/Administrator'
-import { HashRouter, Switch, Route } from 'react-router-dom'
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 export default class PageRouter extends Component {
   render() {
@@ -11,6 +11,7 @@ export default class PageRouter extends Component {
       <Fragment>
         <HashRouter>
           <Switch>
+            <Redirect exact path='/' to='/login'></Redirect>
             <Route path='/login' component={ Login }></Route>
             <Route path='/admin' render={() => {
               return (
