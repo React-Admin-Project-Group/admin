@@ -8,8 +8,8 @@ class AdminApi {
     return tokenAxios.post(url, { username, password })
   }
   /* 获取管理员列表数据 */
-  administratorList () {
-    const url = '/kitchen/admin'
+  administratorList (page, pageSize) {
+    const url = `/kitchen/admin?page=${page}&pageSize=${pageSize}`
     return tokenAxios.get(url)
   }
 
