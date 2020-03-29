@@ -25,7 +25,7 @@ export default class Login extends Component {
         if (code === 1) {
           // 登录成功
           this.setLoginInfo(result.list)
-          this.props.history.replace('/admin/main')
+          this.props.history.replace('/admin/main/home')
         }
       })
       .catch(err => {

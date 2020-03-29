@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 
 import Login from '../pages/Login/Login'
 import Main from '../pages/Main/Main'
+import Home from '@pages/Home/Home'
 import Administrator from '../pages/Administrator/Administrator'
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
 
@@ -21,6 +22,7 @@ export default class PageRouter extends Component {
                     return (
                       <Fragment>
                         <Main>
+                          <Route path='/admin/main/home' component={ Home }></Route>
                           <Route path='/admin/main/administrator' component={ Administrator }></Route>
                         </Main>
                       </Fragment>

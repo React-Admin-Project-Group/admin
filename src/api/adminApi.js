@@ -23,7 +23,7 @@ class AdminApi {
     } else {
      token = 'no token'
     }
-    return tokenAxios.delete(url, { data: { _id , token}})
+    return tokenAxios.delete(url, { data: { _id , token }})
   }
 
   /* 添加管理员 */
