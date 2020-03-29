@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import HeaderNav from './HeaderNav';
 import CustomNav from '../../components/CustomNav' //引入侧边栏组件
-import { Layout, Breadcrumb } from 'antd';
+import { Layout } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 
 export default class Main extends Component {
@@ -19,11 +19,11 @@ export default class Main extends Component {
           <Header className="site-layout-background" style={{ padding: 0 }} >
             <HeaderNav></HeaderNav>
           </Header>
-          <Content style={{ margin: '0 16px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
+          <Content>
+            {/* <Breadcrumb style={{ margin: '16px 0' }}>
               <Breadcrumb.Item>User</Breadcrumb.Item>
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
-            </Breadcrumb>
+            </Breadcrumb> */}
             {/* <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
               Bill is a cat.
             </div> */}

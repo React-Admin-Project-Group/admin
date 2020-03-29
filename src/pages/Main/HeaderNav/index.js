@@ -13,9 +13,7 @@ class HeaderNav extends Component {
     componentDidMount(){
       let {authority,username} = JSON.parse(localStorage.getItem('loginInfo'));
       if(username) {
-        this.setState({loginName:username,authority:authority},()=>{
-          console.log(this.state.loginName,this.state.authority)
-        });
+        this.setState({loginName:username,authority:authority});
       }
     }
     render() {
