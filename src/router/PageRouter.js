@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react'
 import Login from '../pages/Login/Login'
 import Main from '../pages/Main/Main'
 import Administrator from '../pages/Administrator/Administrator'
+import MenuType from '../pages/MenuType'
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 export default class PageRouter extends Component {
@@ -22,6 +23,7 @@ export default class PageRouter extends Component {
                       <Fragment>
                         <Main>
                           <Route path='/admin/main/administrator' component={ Administrator }></Route>
+                          <Route path='/admin/main/menuType' component={ MenuType }></Route>
                         </Main>
                       </Fragment>
                     )

@@ -6,10 +6,20 @@ import {withRouter} from 'react-router-dom';
 class HeaderNav extends Component {
     state = { 
         bgColor:['black','blue','green','red','yellow','oregon'],
-        index:0
+        index:0,
+        loginName:'admin',
+        authority:0
     }
-    render() { 
-      let {bgColor,index} = this.state;
+    componentDidMount(){
+      let {authority,username} = JSON.parse(localStorage.getItem('loginInfo'));
+      if(username) {
+        this.setState({loginName:username,authority:authority},()=>{
+          console.log(this.state.loginName,this.state.authority)
+        });
+      }
+    }
+    render() {
+      let {bgColor,index,loginName,authority} = this.state;
       // let userData = [
       //   {name:'个人中心',event:'login'},
       //   {name:'切换账户',event:'logout2'},
@@ -48,10 +58,10 @@ class HeaderNav extends Component {
           <Menu.Item>
             <span>切换账户</span>
           </Menu.Item>
-          <Menu.Item>
-            <span onClick={()=>{
+          <Menu.Item onClick={()=>{
               this.props.history.replace('/login');
-            }}>退出</span>
+            }}>
+            <span>退出</span>
           </Menu.Item>
         </Menu>
       );
@@ -78,11 +88,11 @@ class HeaderNav extends Component {
                   <Avatar src="/logo.png" size="large" style={{marginLeft:20}} />
               </div>
               <ul className={style.right}>
-                  <li className={style.list}>超级管理员</li>
+                  <li className={style.list}>{authority===1?'超级管理员':'普通管理员'}</li>
                   <li className={style.list}>
                       <Dropdown overlay={menu}>
                           <span className={style['ant-dropdown-link']} >
-                              admin <DownOutlined style={{color:'#fff',fontSize:12}} />
+                              {loginName} <DownOutlined style={{color:'#fff',fontSize:12}} />
                           </span>
                       </Dropdown>
                   </li>

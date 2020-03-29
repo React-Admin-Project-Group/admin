@@ -8,6 +8,7 @@ import {
   SoundOutlined,
   DatabaseOutlined,
   TeamOutlined,
+  ProfileOutlined,
   ReadOutlined,
   LaptopOutlined
 } from '@ant-design/icons'
@@ -36,6 +37,8 @@ function handleClick(e){
       case 'user':
         return  <TeamOutlined/>
       case 'cookbook':
+        return  <ProfileOutlined />
+      case 'menu':
         return  <ReadOutlined/>
       case 'audit':
         return  <LaptopOutlined/>
