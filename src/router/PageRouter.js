@@ -9,6 +9,9 @@ import MenuTypeAdd from '../pages/MenuType/MenuTypeAdd'
 import BannerList from '@pages/Banner/BannerList'
 import BannerAmend from '@pages/Banner/BannerAmend'
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
+import KindList from '../pages/MenuTypeBig/KindList'
+import KindAdd from '../pages/MenuTypeBig/KindAdd'
+import KindUpdate from '../pages/MenuTypeBig/KindUpdate'
 
 export default class PageRouter extends Component {
   render() {
@@ -28,10 +31,14 @@ export default class PageRouter extends Component {
                         <Main>
                           <Route path='/admin/main/home' component={ Home }></Route>
                           <Route path='/admin/main/administrator' component={ Administrator }></Route>
+
                           <Route path='/admin/main/menuType' component={ MenuTypeList }></Route>
                           <Route path='/admin/main/menuTypeAdd' component={ MenuTypeAdd }></Route>
                           <Route path='/admin/main/banner/list' component={BannerList}></Route>
                           <Route path='/admin/main/banner/amend/:id' component={BannerAmend}></Route>
+                          <Route exact path='/admin/main/cookbook/add' component={ KindList }></Route>
+                          <Route path='/admin/main/cookbook/menuadd' component={ KindAdd }></Route>
+                          <Route path='/admin/main/cookbook/menuupdate/:_id' component={KindUpdate }></Route>
                         </Main>
                       </Fragment>
                     )
