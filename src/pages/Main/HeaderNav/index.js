@@ -3,6 +3,10 @@ import style from './index.module.less';
 import {Avatar,Dropdown,Menu,Badge} from 'antd';
 import { DownOutlined,SkinFilled,MailOutlined } from '@ant-design/icons';
 import {withRouter} from 'react-router-dom';
+import { connect } from 'react-redux'
+import ActionCreator from '@store/actionCreator'
+import { bindActionCreators } from 'redux'
+import getToken from '@utils/getToken'
 class HeaderNav extends Component {
     state = { 
         bgColor:['black','blue','green','red','yellow','oregon'],
@@ -10,11 +14,24 @@ class HeaderNav extends Component {
         loginName:'admin',
         authority:0
     }
+    loginOut = () => {
+      sessionStorage.removeItem('loginInfo')
+      localStorage.removeItem('loginInfo')
+      this.props.CHANGE_LOGIN_STATE(false)
+      this.props.history.replace('/login')
+    }
     componentDidMount(){
-      let {authority,username} = JSON.parse(localStorage.getItem('loginInfo'));
+      const token = getToken()
+      if (token) {
+        let {authority,username} = token
+        if(username) {
+          this.setState({loginName:username,authority:authority});
+        }
+      }
+     /*  let {authority,username} = JSON.parse(localStorage.getItem('loginInfo'));
       if(username) {
         this.setState({loginName:username,authority:authority});
-      }
+      } */
     }
     render() {
       let {bgColor,index,loginName,authority} = this.state;
@@ -56,9 +73,7 @@ class HeaderNav extends Component {
           <Menu.Item>
             <span>切换账户</span>
           </Menu.Item>
-          <Menu.Item onClick={()=>{
-              this.props.history.replace('/login');
-            }}>
+          <Menu.Item onClick={this.loginOut}>
             <span>退出</span>
           </Menu.Item>
         </Menu>
@@ -114,4 +129,6 @@ class HeaderNav extends Component {
     }
 }
  
-export default withRouter(HeaderNav);
+export default withRouter(connect(state => state, dispatch => {
+  return bindActionCreators(ActionCreator, dispatch)
+})(HeaderNav));

@@ -7,6 +7,7 @@ axios.interceptors.request.use(function (config) {
     token = loginInfo.token || 'no token'
   } else {
     token = 'no token'
+    // 检测到未登录
   }
   
   config.headers.authorization = 'Bearer ' + token

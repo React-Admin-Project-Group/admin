@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Typography, Button, Spin, Table, Pagination, Popconfirm, message, Tag, DatePicker   } from 'antd'
+import { Card, Typography, Button, Spin, Table, Pagination, Popconfirm, message,  DatePicker   } from 'antd'
 import Style from './Home.module.less'
 import XLSX from 'xlsx'
 import LogApi from '@api/logApi'
@@ -25,6 +25,9 @@ export default class Home extends Component {
       loading: false,
       startTime: '',
       endTime: '',
+      createTime: '',
+      ip: '0.0.0.0',
+      loginCount: 0,
       columns: [
        /*  {
           title: '用户名',
@@ -135,8 +138,24 @@ export default class Home extends Component {
       this.refs.datePic.focus()
     }
   }
+  lastLogin = async () => {
+    LogApi.lastLogin()
+      .then(res => {
+        const { last, count } = res
+        const { createTime, ip } = last
+        this.setState({
+          createTime,
+          ip,
+          loginCount: count
+        })
+      })
+      .catch(err => {
+        message.error('获取上一次登录信息有误')
+      })
+  }
   /* 页面挂载后请求数据，初始化页面 */
   componentDidMount () {
+    this.lastLogin()
     this.refreshList()
   }
   /* 删除一条管理员数据 */
@@ -180,7 +199,7 @@ export default class Home extends Component {
   }
 
   render() {
-    const { columns, logList, page, pageSize, count, selectedRowKeys } = this.state 
+    const { columns, logList, page, pageSize, count, selectedRowKeys, loginCount, createTime, ip } = this.state 
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
@@ -190,8 +209,8 @@ export default class Home extends Component {
       <div className={Style['home-container']}>
         <Card>
           <Title level={3}>欢迎使用下厨房后台管理系统</Title>
-          <p>登录次数: <span>10</span></p>
-          <p>上次登录ip: <span>222.35.131.79.1</span> 上次登录时间: <span>2014-6-14 11:19:55</span></p>
+          <p>登录次数: <span>{loginCount}</span></p>
+          <p>上次登录ip: <span>{ip}</span> 上次登录时间: <span>{createTime}</span></p>
           
           {/* 表格头部信息 */}
           <div className={Style.searchWrapper}>
