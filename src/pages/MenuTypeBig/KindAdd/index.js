@@ -15,6 +15,8 @@ class MenuAdd extends Component {
         this.props.history.replace('/admin/main/cookbook/add')
         if(code){return message.info(msg)}
     }
+    // 请求数据
+    
     // 取消方法
     cancel(){
         this.props.history.replace('/admin/main/cookbook/add')

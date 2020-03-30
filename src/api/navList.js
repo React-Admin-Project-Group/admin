@@ -13,13 +13,13 @@ class NavListApi{
         let url=`/kitchen/kinds`
         return tokenAxios.post(url,{kind_name})
     }
-    alter(_id){
+    alter(payload){
         let url='/kitchen/kinds'
-        return tokenAxios.put(url,{data:{_id}})
+        return tokenAxios.put(url,payload)
     }
     findOne(_id){
-        let url='/kitchen/kinds/'+_id
-        return tokenAxios.get(url)
+        let url='/kitchen/kinds/findOne'
+        return tokenAxios.get(url,{_id})
     }
     
 }

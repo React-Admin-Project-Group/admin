@@ -6,7 +6,7 @@ class NavList extends Component {
     state = {
         list: [],//列表数据
         columns: [
-            { title: '_id', dataIndex: '_id', key: '_id' },
+            { title: '_id', dataIndex: '_id', key: '_id'},
             { title: '类别', dataIndex: 'kind_name', key: 'kind_name' },
             {
                 title: '修改', render:(record)=> {
@@ -23,6 +23,7 @@ class NavList extends Component {
                     return (
                             <Button type='danger' size='small' onClick={()=>{
                                 this.delKinds(record._id)
+                                console.log('id',record._id)
                             }}>删除</Button>
                     )
                 }
@@ -30,7 +31,7 @@ class NavList extends Component {
         ]
     }
     //获取商品数据
-    componentDidMount() {
+    async componentDidMount() {
         this.getListData()
     }
     //删除分类

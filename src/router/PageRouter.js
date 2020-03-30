@@ -32,7 +32,7 @@ export default class PageRouter extends Component {
 
                           <Route path='/admin/main/menuType' component={ MenuTypeList }></Route>
                           <Route path='/admin/main/menuTypeAdd' component={ MenuTypeAdd }></Route>
-                          <Route path='/admin/main/cookbook' component={ KindList }></Route>
+                          <Route exact path='/admin/main/cookbook/add' component={ KindList }></Route>
                           <Route path='/admin/main/cookbook/menuadd' component={ KindAdd }></Route>
                           <Route path='/admin/main/cookbook/menuupdate/:_id' component={KindUpdate }></Route>
                         </Main>
