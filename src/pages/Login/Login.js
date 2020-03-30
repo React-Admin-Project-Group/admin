@@ -5,17 +5,20 @@ import style from './Login.module.less'
 import imgUrl from '../../static/admin-login-bg.jpg'
 import AdminApi from '../../api/adminApi'
 import { message }  from 'antd'
-export default class Login extends Component {
+import { connect } from 'react-redux'
+import ActionCreator from '../../store/actionCreator'
+import { bindActionCreators } from 'redux'
+class Login extends Component {
   onFinish = values => {
-    // console.log('Received values of form: ', values);
-    const { username, password } = values
-    this.login(username, password)
+    console.log('Received values of form: ', values);
+    const { username, password, remember } = values
+    this.login(username, password, remember)
   }
   onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo)
   }
 
-  login = (username, password) => {
+  login = (username, password, remember) => {
     AdminApi.adminLogin(username, password)
       .then((result) => {
         const { code, msg } = result
@@ -24,7 +27,7 @@ export default class Login extends Component {
         }
         if (code === 1) {
           // 登录成功
-          this.setLoginInfo(result.list)
+          this.setLoginInfo(result.list, remember)
           this.props.history.replace('/admin/main/home')
         }
       })
@@ -33,8 +36,15 @@ export default class Login extends Component {
       })
   }
 
-  setLoginInfo (list) {
-    localStorage.setItem('loginInfo', JSON.stringify(list))
+  setLoginInfo (list, remember) {
+    if (remember) {
+      sessionStorage.removeItem('loginInfo')
+      localStorage.setItem('loginInfo', JSON.stringify(list))
+    } else {
+      localStorage.removeItem('loginInfo')
+      sessionStorage.setItem('loginInfo', JSON.stringify(list))
+    }
+    this.props.CHANGE_LOGIN_STATE(true)
   }
   render() {
     return (
@@ -66,7 +76,9 @@ export default class Login extends Component {
               />
             </Form.Item>
             {/* 记住密码 */}
-            <Checkbox>使我保持登录状态</Checkbox>
+            <Form.Item name="remember" valuePropName="checked">
+              <Checkbox>使我保持登录状态</Checkbox>
+            </Form.Item>
             {/* 登录 */}
             <Form.Item>
               <Button type="primary" htmlType="submit" className={style.button}>
@@ -85,3 +97,7 @@ export default class Login extends Component {
     )
   }
 }
+
+export default connect(state => state, dispatch => {
+  return bindActionCreators(ActionCreator, dispatch)
+})(Login)

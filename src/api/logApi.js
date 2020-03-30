@@ -19,6 +19,12 @@ class logApi {
     const url = '/kitchen/log'
     return tokenAxios.delete(url, { data: { del_ids }})
   }
+
+  /* 获取用户上次登录 */
+  lastLogin () {
+    const url = '/kitchen/log/last'
+    return tokenAxios.get(url)
+  }
 }
 
 export default new logApi()

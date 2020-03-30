@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Modal, Form, Input, Radio, Button, message } from 'antd'
 import AdminApi from '../../../api/adminApi'
-
+// import imgUpload from '../../../api/imgUpload'
 export default class AddForm extends Component {
   state = {
     value: 0
@@ -39,6 +39,24 @@ export default class AddForm extends Component {
     const {visible} = this.props
     return (
       <Fragment>
+        {/* <input type='file' ref='img'/>
+        <Button onClick={
+          async () => {
+            let  file = this.refs.img.files[0]
+            if(!file){ return message.error('请先选择一张图片')}
+            // 图片的验证
+            let {size,type} = file 
+            console.log(type)
+            let types = ['jpg',"jpeg",'gif','png']
+            if(size>1000000){ return message.warning('图片超过1m')}
+            if(types.indexOf(type.split('/')[1])===-1){ return message.warning('只允许jpg.jpeg,gif,png四种类型')}
+            // 调用接口
+            // 将图片转化为formdata 
+            let formdata = new FormData()
+            formdata.append('img',file)
+            let {code,msg,path} = await imgUpload.imgUpload(formdata)
+          }
+        }>上传</Button> */}
         <Modal 
           title='添加管理员'
           visible={visible}

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
+import { HashRouter, Switch } from 'react-router-dom'
 
-import Login from '../pages/Login/Login'
+/* import Login from '../pages/Login/Login'
 import Main from '../pages/Main/Main'
 import Home from '@pages/Home/Home'
 import Administrator from '../pages/Administrator/Administrator'
@@ -13,15 +14,16 @@ import KindList from '../pages/MenuTypeBig/KindList'
 import KindAdd from '../pages/MenuTypeBig/KindAdd'
 import KindUpdate from '../pages/MenuTypeBig/KindUpdate'
 
+ */
+import FrontedAuth from './FrontedAuth'
 export default class PageRouter extends Component {
   render() {
     return (
       <Fragment>
         <HashRouter>
           <Switch>
-            <Redirect exact path='/' to='/login'></Redirect>
+            {/* <Redirect exact path='/' to='/login'></Redirect>
             <Route path='/login' component={ Login }></Route>
-            {/* 这里是管理页面 */}
             <Route path='/admin' render={() => {
               return (
                 <Fragment>
@@ -48,7 +50,8 @@ export default class PageRouter extends Component {
               )
             }}>
 
-            </Route>
+            </Route> */}
+            <FrontedAuth></FrontedAuth>
           </Switch>
         </HashRouter>
       </Fragment>

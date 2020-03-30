@@ -4,40 +4,23 @@ export default [
         key:'1',
         title:'下厨房后台管理系统',
         icon:'home',
-        path:'/admin/main'
+        path:'/admin/main/home'
     },
     {
         key:'2',
         title:'管理员管理',
         icon:'administrator',
-        children:[
+        path:'/admin/main/administrator',
+        /* children:[
             {
                 key:'2-1',
                 title:'管理员列表',
                 icon:'default',
                 path:'/admin/main/administrator',
-            },
-            {
-                key:'2-2',
-                title:'新增管理员',
-                icon:'default',
-                path:'/admin/main/administrator/add'
-            },
-            {
-                key:'2-3',
-                title:'管理员权限更改',
-                icon:'default',
-                path:'/admin/main/administrator/change'
-            },
-            {
-                key:'2-4',
-                title:'删除管理员',
-                icon:'default',
-                path:'/admin/main/administrator/delete'
             }
-        ]
+        ] */
     },
-    {
+    /* {
         key:'3',
         title:'数据上传模块',
         icon:'data',
@@ -49,7 +32,7 @@ export default [
                 path:'/admin/main/statistics/img'
             }
         ]
-    },
+    }, */
     {
         key:'4',
         title:'菜谱类别管理模块',
@@ -135,19 +118,6 @@ export default [
                 title:'菜系占比统计',
                 icon:'default',
                 path:'/admin/main/statistics/cuisine'
-            }
-        ]
-    },
-    {
-        key:'9',
-        title:'用户操作日志模块',
-        icon:'user',
-        children:[
-            {
-                key:'9-1',
-                title:'操作日志',
-                icon:'default',
-                path:'/admin/main/user/journal'
             }
         ]
     },
