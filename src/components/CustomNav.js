@@ -30,7 +30,7 @@ function handleClick(e){
         return  <HomeOutlined/>
       case 'administrator':
         return  <UserOutlined/>
-      case 'advertising':
+      case 'banner':
         return  <SoundOutlined/>
       case 'data':
         return  <DatabaseOutlined/>

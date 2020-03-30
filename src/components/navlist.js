@@ -77,45 +77,39 @@ export default [
     },
     {
         key:'6',
-        title:'用户上传审核模块',
-        icon:'audit',
+        title:'广告管理模块',
+        icon:'banner',
         children:[
             {
                 key:'6-1',
-                title:'审核通过',
+                title:'广告列表',
                 icon:'default',
-                path:'/admin/main/audit/pass'
+                path:'/admin/main/banner/list'
             },
             {
                 key:'6-2',
-                title:'审核驳回',
+                title:'修改广告',
                 icon:'default',
-                path:'/admin/main/audit/oppose'
+                path:'/admin/main/banner/amend'
             }
         ]
     },
     {
         key:'7',
-        title:'广告管理模块',
-        icon:'advertising',
+        title:'用户上传审核模块',
+        icon:'audit',
         children:[
             {
                 key:'7-1',
-                title:'新增广告',
+                title:'审核通过',
                 icon:'default',
-                path:'/admin/main/advertising/add'
+                path:'/admin/main/audit/pass'
             },
             {
                 key:'7-2',
-                title:'更新广告',
+                title:'审核驳回',
                 icon:'default',
-                path:'/admin/main/advertising/updata'
-            },
-            {
-                key:'7-3',
-                title:'删除广告',
-                icon:'default',
-                path:'/admin/main/advertising/delete'
+                path:'/admin/main/audit/oppose'
             }
         ]
     },

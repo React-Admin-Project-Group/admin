@@ -6,6 +6,8 @@ import Home from '@pages/Home/Home'
 import Administrator from '../pages/Administrator/Administrator'
 import MenuTypeList from '../pages/MenuType/MenuTypeList'
 import MenuTypeAdd from '../pages/MenuType/MenuTypeAdd'
+import BannerList from '@pages/Banner/BannerList'
+import BannerAmend from '@pages/Banner/BannerAmend'
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 export default class PageRouter extends Component {
@@ -28,6 +30,8 @@ export default class PageRouter extends Component {
                           <Route path='/admin/main/administrator' component={ Administrator }></Route>
                           <Route path='/admin/main/menuType' component={ MenuTypeList }></Route>
                           <Route path='/admin/main/menuTypeAdd' component={ MenuTypeAdd }></Route>
+                          <Route path='/admin/main/banner/list' component={BannerList}></Route>
+                          <Route path='/admin/main/banner/amend/:id' component={BannerAmend}></Route>
                         </Main>
                       </Fragment>
                     )
