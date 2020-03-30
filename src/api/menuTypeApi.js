@@ -1,6 +1,5 @@
 // import axios from '../utils/axios'
 import tokenAxios from '../utils/tokenAxios'
-import getToken from '../utils/getToken'
 class AdminApi {
   /* 获取菜谱大类列表数据 */
   getMenuKinds () {
@@ -13,23 +12,30 @@ class AdminApi {
     return tokenAxios.get(url)
   }
 
-  /* 删除管理员数据 */
-  administratorDel (_id) {
-    const url = '/kitchen/admin/delete'
-    const loginInfo = getToken()
-    let token = ''
-    if (loginInfo) {
-      token = loginInfo.token || 'no token'
-    } else {
-     token = 'no token'
-    }
-    return tokenAxios.delete(url, { data: { _id , token}})
+  /* 添加子类菜谱 */
+  addTypes (data) {
+    const url = '/kitchen/menu'
+    return tokenAxios.post(url,data)
   }
-
-  /* 添加管理员 */
-  administratorAdd (payload) {
-    const url = '/kitchen/admin'
-    return tokenAxios.put(url, payload)
+  /* 向大类中添加子类菜谱 */
+  addKinds (payload) {
+    const url = '/kitchen/kinds/add'
+    return tokenAxios.put(url,payload)
+  }
+  /* 从大类中删除子类 */
+  removeFromKinds (_id,child_id) {
+    const url = '/kitchen/kinds/del'
+    return tokenAxios.delete(url, {data:{_id,child_id}})
+  }
+  /* 删除子类 */
+  deleteType (_id) {
+    const url = '/kitchen/menu'
+    return tokenAxios.delete(url, {data:{_id}})
+  }
+  /* 修改子类 */
+  updateType (payload) {
+    const url = '/kitchen/menu'
+    return tokenAxios.put(url,payload)
   }
 }
 
