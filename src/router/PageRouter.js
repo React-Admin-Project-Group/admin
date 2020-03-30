@@ -7,6 +7,9 @@ import Administrator from '../pages/Administrator/Administrator'
 import MenuTypeList from '../pages/MenuType/MenuTypeList'
 import MenuTypeAdd from '../pages/MenuType/MenuTypeAdd'
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
+import KindList from '../pages/MenuTypeBig/KindList'
+import KindAdd from '../pages/MenuTypeBig/KindAdd'
+import KindUpdate from '../pages/MenuTypeBig/KindUpdate'
 
 export default class PageRouter extends Component {
   render() {
@@ -26,8 +29,12 @@ export default class PageRouter extends Component {
                         <Main>
                           <Route path='/admin/main/home' component={ Home }></Route>
                           <Route path='/admin/main/administrator' component={ Administrator }></Route>
+
                           <Route path='/admin/main/menuType' component={ MenuTypeList }></Route>
                           <Route path='/admin/main/menuTypeAdd' component={ MenuTypeAdd }></Route>
+                          <Route path='/admin/main/cookbook' component={ KindList }></Route>
+                          <Route path='/admin/main/cookbook/menuadd' component={ KindAdd }></Route>
+                          <Route path='/admin/main/cookbook/menuupdate/:_id' component={KindUpdate }></Route>
                         </Main>
                       </Fragment>
                     )
