@@ -14,7 +14,7 @@ class Main extends Component {
     bgColor:['green','blue','black','red','yellow','oregon']
   }
   render() {
-    let {bgColor} = this.state;
+    let {bgColor} = this.state
     return (
       <div>
         <Layout style={{ minHeight: '100vh'}}>
