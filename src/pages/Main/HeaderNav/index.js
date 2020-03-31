@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './index.module.less';
-import {Avatar,Dropdown,Menu,Badge} from 'antd';
+import { Dropdown,Menu,Badge} from 'antd';
 import { DownOutlined,SkinFilled,MailOutlined } from '@ant-design/icons';
 import {withRouter} from 'react-router-dom';
 import { connect } from 'react-redux'

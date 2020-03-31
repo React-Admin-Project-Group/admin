@@ -14,7 +14,7 @@ export default class Main extends Component {
           {/* 侧边栏 */}
         <Sider >
           <div className="logo" >
-            <a href="/" class={Style.logo}>下厨房</a>
+            <a href="/" className={Style.logo}>下厨房</a>
           </div>
           <CustomNav></CustomNav>
         </Sider>
