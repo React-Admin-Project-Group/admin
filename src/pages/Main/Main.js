@@ -2,19 +2,26 @@ import React, { Component } from 'react'
 import HeaderNav from './HeaderNav';
 import CustomNav from '../../components/CustomNav' //引入侧边栏组件
 import { Layout } from 'antd';
+import {withRouter} from 'react-router-dom';
+import { connect } from 'react-redux'
+import ActionCreator from '@store/actionCreator'
+import { bindActionCreators } from 'redux'
 import Style from './main.module.less'
 const { Header, Content, Footer, Sider } = Layout;
 
-export default class Main extends Component {
-  
+class Main extends Component {
+  state = {
+    bgColor:['green','blue','black','red','yellow','oregon']
+  }
   render() {
+    let {bgColor} = this.state
     return (
       <div>
         <Layout style={{ minHeight: '100vh'}}>
           {/* 侧边栏 */}
         <Sider >
-          <div className="logo" >
-            <a href="/" class={Style.logo}>下厨房</a>
+          <div className={Style[bgColor[this.props.index]]} >
+            <a href="/" className={Style.logo}>下厨房</a>
           </div>
           <CustomNav></CustomNav>
         </Sider>
@@ -34,3 +41,7 @@ export default class Main extends Component {
     )
   }
 }
+
+export default withRouter(connect(state => state, dispatch => {
+  return bindActionCreators(ActionCreator, dispatch)
+})(Main));
