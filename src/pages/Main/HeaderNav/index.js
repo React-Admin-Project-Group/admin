@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from './index.module.less';
-import {Avatar,Dropdown,Menu,Badge} from 'antd';
+import {Dropdown,Menu,Badge} from 'antd';
 import { DownOutlined,SkinFilled,MailOutlined } from '@ant-design/icons';
 import {withRouter} from 'react-router-dom';
 import { connect } from 'react-redux'
@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux'
 import getToken from '@utils/getToken'
 class HeaderNav extends Component {
     state = { 
-        bgColor:['black','blue','green','red','yellow','oregon'],
+        bgColor:['green','blue','black','red','yellow','oregon'],
         loginName:'admin',
         authority:0
     }
@@ -35,9 +35,9 @@ class HeaderNav extends Component {
     render() {
       let {bgColor,loginName,authority} = this.state;
       let skinData = [
-          {name:'黑色'},
-          {name:'蓝色'},
           {name:'默认（绿色）'},
+          {name:'蓝色'},
+          {name:'黑色'},
           {name:'红色'},
           {name:'黄色'},
           {name:'橙色'},

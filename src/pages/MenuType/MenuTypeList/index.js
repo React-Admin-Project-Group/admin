@@ -164,17 +164,6 @@ class MenuType extends Component {
                     <Button type='primary' onClick={()=>{
                         this.props.history.push('/admin/main/menuTypeAdd');
                     }}>添加</Button>
-<<<<<<< HEAD
-                    <Tabs defaultActiveKey="1" tabPosition={mode} style={{ height: '550px', marginTop: '50px' }} keyboard animated>
-                        {dataList.map((item,index)=>{
-                            return(
-                                <TabPane tab={item.name} key={index}>
-                                    <Table scroll={{y:400,x:700}} columns={columns} pagination={true} dataSource={item.typeList} rowKey='_id' ></Table>
-                                </TabPane>
-                            )
-                        })}
-                    </Tabs>
-=======
                     <Spin tip="Loading..." size="large" spinning={flag}>
                         {dataList.length?                       
                         <Tabs defaultActiveKey="1" tabPosition={mode} style={{ height: 550, marginTop:30 }} keyboard animated>
@@ -188,7 +177,6 @@ class MenuType extends Component {
                         </Tabs>:<Empty />
                         }
                     </Spin>
->>>>>>> xwy
                 </Card>
                 <Modal
                 title='修改菜谱子类'
