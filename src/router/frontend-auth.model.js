@@ -42,8 +42,6 @@ const routerConfig  = [
       return(
         <Main>
           <Route path='/admin/main/administrator' component={ Administrator }></Route>
-              <Route path='/admin/main/menuType' component={ MenuTypeList }></Route>
-              <Route path='/admin/main/menuTypeAdd' component={ MenuTypeAdd }></Route>
         </Main>
       )
     }
@@ -54,7 +52,6 @@ const routerConfig  = [
       return(
         <Main>
           <Route path='/admin/main/menuType' component={ MenuTypeList }></Route>
-          <Route path='/admin/main/menuTypeAdd' component={ MenuTypeAdd }></Route>
         </Main>
       )
     }
