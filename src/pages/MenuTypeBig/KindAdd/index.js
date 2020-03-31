@@ -22,7 +22,7 @@ class MenuAdd extends Component {
         this.props.history.replace('/admin/main/cookbook/add')
     }
     render() {
-        let { kind_name ,msg} = this.state
+        let { kind_name} = this.state
         return (
             <div className={style.box}>
                 <Card title='菜谱类别添加'>

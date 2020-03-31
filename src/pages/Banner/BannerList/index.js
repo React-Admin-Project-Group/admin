@@ -1,10 +1,13 @@
 import React, {Component}  from 'react'
 // import style from 'index.module.less'
-import {Card, Table, Button, Spin, message, Pagination, Popconfirm, Modal, notification } from 'antd'
+import {Card, Table, Button, Spin, message, Pagination, Popconfirm, Modal, notification, Input } from 'antd'
 import bannerApi from '../../../api/bannerApi'
 
 class BannerList extends Component{
     state = {
+        id:'',
+        name:'',
+        type:'',
         page: 1, // 页码数
         pageSize: 5, // 每页显示的条数
         count: 0, // 总数量
@@ -42,9 +45,8 @@ class BannerList extends Component{
                             <Popconfirm title='你确定要删除该商品嘛?'
                              onConfirm={()=>{this.delBanner(recode._id)}}
                             >
-                                <Button type='danger' size='small'>删除</Button>
+                                <Button type='danger' size='small' style={{marginRight:"6px"}}>删除</Button>
                             </Popconfirm>
-                            <span>¤</span>
                             {/* 修改 */}
                             <Popconfirm title='你确定要修改该商品嘛?'
                              onClick={()=>{
@@ -64,12 +66,16 @@ class BannerList extends Component{
     //和模态框里面的数据做关联
     handleOk= async ()=>{
         //获取输入内容
-        let banner_id = this.refs.id.value
-        let banner_name = this.refs.name.value
-        let banner_type = this.refs.type.value
+        let {id, name, type} = this.state
+        let banner_id = id
+        let banner_name = name
+        let banner_type = type
+        console.log(banner_id,banner_name,banner_type)
         //调添加接口
         let result = await bannerApi.banneradd({ banner_id, banner_name, banner_type })
-        console.log(result)
+        // console.log(result)
+        // console.log(result.code)
+        if(result.code === 20005){return notification.error({description:'id已存在请重试',message:'错误',duration:1.5})}
         if(result.code !==1){return notification.error({description:'广告添加失败',message:'错误',duration:1.5})}
         console.log(result.code)
         //关闭模态框
@@ -91,10 +97,10 @@ class BannerList extends Component{
         
     }
     //获取广告的列表数据
-    getBannerList =async ()=>{
+    getBannerList = ()=>{
         this.setState({spinning:true})
         const {page, pageSize} = this.state
-        let result = await bannerApi.bannerlist(page, pageSize)
+        bannerApi.bannerlist(page, pageSize)
         .then((result)=>{
             // console.log(result)
             if(result.code === 1){
@@ -112,7 +118,7 @@ class BannerList extends Component{
         this.getBannerList()
     }
     render(){
-        let { spinning, dataSource, columns, page, pageSize, count, visible } = this.state
+        let { spinning, dataSource, columns, page, pageSize, count, visible, id, name, type } = this.state
         return(
             <div>
                 <Card title='广告管理列表' >
@@ -120,7 +126,9 @@ class BannerList extends Component{
                     this.setState({visible:true})
                     }}>添加</Button>
                 <Spin spinning={spinning}>
-                    <Table dataSource={dataSource} columns={columns} pagination={false} rowKey='_id'></Table>
+                    <Table dataSource={dataSource} columns={columns} pagination={false} rowKey='_id'
+                        style={{height:'360px',marginTop:'10px'}}
+                    ></Table>
                 </Spin>
              {/* 分页器 */}
             <Pagination  current={page} total={count} showQuickJumper pageSize={pageSize}
@@ -130,6 +138,7 @@ class BannerList extends Component{
                     this.getBannerList()
                 })   
                 }}
+                style={{float:'right'}}
                 />
             </Card>
             {/* 添加的模态框 */}
@@ -139,9 +148,21 @@ class BannerList extends Component{
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
             >
-               <span>id:</span><br/><input type="text" ref='id'/><br/>
-               <span>名字:</span><br/><input type="text" ref='name'/><br/>
-               <span>类型:</span><br/><input type="text" ref='type'/><br/>
+               广告ID:<br/><Input size='large' type='text' style={{width:'280px',height:'30px'}} 
+                value={id} onChange={(e)=>{
+                    this.setState({id:e.target.value})
+                }} placeholder='需要添加的广告id'
+               /><br/>
+               广告名字:<br/><Input size='large' type='text' style={{width:'280px',height:'30px'}} 
+                value={name} onChange={(e)=>{
+                    this.setState({name:e.target.value})
+                }} placeholder='需要添加的广告名字'
+               /><br/>
+               广告类型:<br/><Input size='large' type='text' style={{width:'280px',height:'30px'}} 
+                value={type} onChange={(e)=>{
+                    this.setState({type:e.target.value})
+                }} placeholder='需要添加的广告的类型'
+               />
             </Modal>
         </div>
         )

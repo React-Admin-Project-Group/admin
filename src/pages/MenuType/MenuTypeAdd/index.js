@@ -3,6 +3,7 @@ import style from './index.module.less';
 import menuTypeApi from '../../../api/menuTypeApi';
 import imgUpload from '../../../api/imgUpload';
 import { Card, Button, message, Input, } from 'antd';
+// let routerPath = 'http://localhost:3000';
 let routerPath = 'http://114.215.148.3:3000';
 class MenuTypeAdd extends Component {
     state = {

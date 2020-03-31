@@ -12,9 +12,9 @@ class MenuUpdate extends Component {
         //  获取id
         let {_id}=this.props.match.params
         //  获取列表信息
-        let {code,list} = await MenuAddApi.list()
+        let {list} = await MenuAddApi.list()
         // 通过id 获取修改信息
-        let result=await MenuAddApi.findOne(_id)
+        await MenuAddApi.findOne(_id)
         this.setState({types:list})
     }
     // 修改方法
@@ -22,7 +22,7 @@ class MenuUpdate extends Component {
         let {_id}=this.props.match.params
         let {kind_name}=this.state
         if(kind_name!==''){
-            let result =await MenuAddApi.alter({_id,kind_name})
+            await MenuAddApi.alter({_id,kind_name})
             this.props.history.replace('/admin/main/cookbook/add')
         }else{
             message.error('修改的类别不能为空')
@@ -34,7 +34,7 @@ class MenuUpdate extends Component {
         
     }
     render() {
-        let { kind_name ,msg,_id} = this.state
+        let { kind_name} = this.state
         return (
             <div className={style.box}>
                 <Card title='菜谱类别修改'>

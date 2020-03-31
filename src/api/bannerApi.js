@@ -1,5 +1,4 @@
 import tokenAxios from '../utils/tokenAxios'
-import getToken from '../utils/getToken'
 class BannerApi {
     //获取广告列表数据
     bannerlist (page, pageSize){
