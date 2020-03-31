@@ -6,7 +6,6 @@ import imgUpload from '../../../api/imgUpload';
 // import MenuTypeUpdate from '../TypeUpdate';
 const { TabPane } = Tabs;
 let routerPath = 'http://114.215.148.3:3000';
-// let routerPath = 'http://localhost:3000';
 class MenuType extends Component {
     state = {
         dataList:[],
