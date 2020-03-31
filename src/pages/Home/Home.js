@@ -218,6 +218,7 @@ export default class Home extends Component {
               <DeleteOutlined />
               批量删除
             </Button>
+            <span>日期范围: </span>
             <RangePicker
               /* showTime={{ format: 'HH:mm' }}
               format="YYYY-MM-DD HH:mm" */

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {withRouter} from 'react-router-dom'
-import Navlist from './navlist'  //侧边存放的栏数据
+import navList from './navlist'  //侧边存放的栏数据
 import {
   HomeOutlined,
   UserOutlined,
@@ -13,6 +13,7 @@ import {
   LaptopOutlined
 } from '@ant-design/icons'
 import { Menu } from 'antd'
+import Style from './nav.module.less'
 const { SubMenu } = Menu;
 
 function handleClick(e){
@@ -47,7 +48,7 @@ function handleClick(e){
     }
   }
   //  数据处理
-  rederItem(data){
+  renderItem(data){
     return data.map((item,index)=>{
      if(item.children){ //判断是否有多级
        return(
@@ -60,7 +61,7 @@ function handleClick(e){
           )
         })()}>
           {/* 如果里面还有2级 将渲染的方法在调用一遍 */}
-          {this.rederItem(item.children)}
+          {this.renderItem(item.children)}
         </SubMenu>
        )
      }else{
@@ -76,9 +77,9 @@ function handleClick(e){
   }
   render() {
     return (
-      <div>
-        <Menu theme="dark" mode="inline" onClick={handleClick.bind(this)}>
-          {this.rederItem(Navlist)}
+      <div className={Style.nav}>
+        <Menu theme="light" mode="inline" style={{ background: '#fff', height: '100%'}} onClick={handleClick.bind(this)}>
+          { this.renderItem(navList) }
         </Menu>
       </div>
     )

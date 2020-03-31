@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import HeaderNav from './HeaderNav';
 import CustomNav from '../../components/CustomNav' //引入侧边栏组件
 import { Layout } from 'antd';
+import Style from './main.module.less'
 const { Header, Content, Footer, Sider } = Layout;
 
 export default class Main extends Component {
@@ -12,15 +13,17 @@ export default class Main extends Component {
         <Layout style={{ minHeight: '100vh' }}>
           {/* 侧边栏 */}
         <Sider >
-          <div className="logo" />
+          <div className="logo" >
+            <a href="/" class={Style.logo}>下厨房</a>
+          </div>
           <CustomNav></CustomNav>
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }} >
             <HeaderNav></HeaderNav>
           </Header>
-          {/* <Content style={{ margin: '0 16px' }}> */}
-          <Content>
+          <Content style={{ margin: '0px 20px' , paddingTop: '20px', boxSizing: 'border-box'}}> {/* , paddingTop: '20px', boxSizing: 'border-box'  */}
+          {/* <Content> */}
             { this.props.children}
           </Content>
           <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>

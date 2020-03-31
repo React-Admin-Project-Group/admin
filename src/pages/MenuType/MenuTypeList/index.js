@@ -161,7 +161,7 @@ class MenuType extends Component {
                     <Button type='primary' onClick={()=>{
                         this.props.history.push('/admin/main/menuTypeAdd');
                     }}>添加</Button>
-                    <Tabs defaultActiveKey="1" tabPosition={mode} style={{ height: 550, marginTop:50 }} keyboard animated>
+                    <Tabs defaultActiveKey="1" tabPosition={mode} style={{ height: '550px', marginTop: '50px' }} keyboard animated>
                         {dataList.map((item,index)=>{
                             return(
                                 <TabPane tab={item.name} key={index}>

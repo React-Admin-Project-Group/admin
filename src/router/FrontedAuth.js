@@ -5,7 +5,14 @@ import routerConfig from './frontend-auth.model'
 
 function find(path) {
   for (let item of routerConfig) {
-    if (item.path === path) return item.component
+    const index = item.path.indexOf('/:id')
+    if (index !== -1) {
+      if (path.substring(0, index) === item.path.substring(0, index)) {
+        return item.component
+      }
+    } else {
+      if (item.path === path) return item.component
+    }
   }
   return false
 }
@@ -14,9 +21,9 @@ class FrontedAuth extends Component {
     const { loginState, location } = this.props
     // 地址栏的路劲
     const pathname = location.pathname
+    console.log('pathname:', pathname)
     // 路劲匹配后返回的组件
     const matchComponent = find(pathname)
-    console.log('pathname:', pathname)
     if (matchComponent) {
       /* 如果是登录, 则在已登录的情况下跳转到首页，否则正常到登录 */
       if (pathname === '/login') {

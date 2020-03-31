@@ -472,8 +472,20 @@ module.exports = function(webpackEnv) {
                   importLoaders: 3,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                 },
-                'less-loader'
+                'less-loader',
+                {
+                  modifyVars: {
+                  'primary-color': '#888',
+                  'link-color': '#1DA57A',
+                  'border-radius-base': '2px',
+                  // or
+                  'hack': `true; @import "your-less-file-path.less";`, // Override with less file
+                  },
+                  javascriptEnabled: true,
+                },
               ),
+              
+                 
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
               // Remove this when webpack adds a warning or an error for this.

@@ -107,11 +107,11 @@ const routerConfig  = [
     }
   },
   {
-    path:'/admin/main/cookbook/menuupdate/:_id',
+    path:'/admin/main/cookbook/menuupdate/:id',
     component: () => {
       return(
         <Main>
-          <Route path='/admin/main/cookbook/menuupdate/:_id' component={ KindUpdate }></Route>
+          <Route path='/admin/main/cookbook/menuupdate/:id' component={ KindUpdate }></Route>
         </Main>
       )
     }

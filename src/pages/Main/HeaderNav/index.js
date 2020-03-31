@@ -96,9 +96,9 @@ class HeaderNav extends Component {
       return (
           <div className={style[bgColor[index]]} style={{ height: 64,display: 'flex',justifyContent: 'space-between'}}>
               <div className={style.left}>
-                  <h1>下厨房</h1>
+                  {/* <h1>下厨房</h1>
                   <span>V1.0.1</span>
-                  <Avatar src="/logo.png" size="large" style={{marginLeft:20}} />
+                  <Avatar src="/logo.png" size="large" style={{marginLeft:20}} /> */}
               </div>
               <ul className={style.right}>
                   <li className={style.list}>{authority===1?'超级管理员':'普通管理员'}</li>
