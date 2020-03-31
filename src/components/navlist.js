@@ -44,12 +44,12 @@ export default [
                 icon:'default',
                 path:'/admin/main/cookbook/add'
             },
-            {
-                key:'4-2',
-                title:'删除菜谱分类',
-                icon:'default',
-                path:'/admin/main/cookbook/delete'
-            },
+            // {
+            //     key:'4-2',
+            //     title:'删除菜谱分类',
+            //     icon:'default',
+            //     path:'/admin/main/cookbook/delete'
+            // },
         ]
     },
     {

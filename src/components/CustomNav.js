@@ -77,7 +77,10 @@ function handleClick(e){
   render() {
     return (
       <div>
-        <Menu theme="dark" mode="inline" onClick={handleClick.bind(this)}>
+        <Menu  theme='dark' mode='inline' onClick={handleClick.bind(this)}
+          
+          // defaultOpenKeys={['sub1']}
+        >
           {this.rederItem(Navlist)}
         </Menu>
       </div>
