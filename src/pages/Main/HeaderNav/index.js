@@ -10,7 +10,6 @@ import getToken from '@utils/getToken'
 class HeaderNav extends Component {
     state = { 
         bgColor:['black','blue','green','red','yellow','oregon'],
-        index:0,
         loginName:'admin',
         authority:0
     }
@@ -34,45 +33,23 @@ class HeaderNav extends Component {
       } */
     }
     render() {
-      let {bgColor,index,loginName,authority} = this.state;
-      // let userData = [
-      //   {name:'个人中心',event:'login'},
-      //   {name:'切换账户',event:'logout2'},
-      //   {name:'退出',event:'login'},
-      // ]
+      let {bgColor,loginName,authority} = this.state;
       let skinData = [
-          {name:'默认（黑色）'},
+          {name:'黑色'},
           {name:'蓝色'},
-          {name:'绿色'},
+          {name:'默认（绿色）'},
           {name:'红色'},
           {name:'黄色'},
           {name:'橙色'},
         ]
-      // let createUser = (data)=>{
-      //   return(
-      //     <Menu onClick={(event)=>{
-      //       console.log(event.item.props.event,this)
-      //       this.props.history.replace(`/${event.item.props.event}`);
-      //     }}>
-      //       {data.map((item,index)=>{
-      //         return (
-      //           <Menu.Item key={index} event={item.event}>
-      //             <span>{item.name}</span>
-      //             {/* <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">{item.name}</a> */}
-      //           </Menu.Item>
-      //         )
-      //       })}
-      //     </Menu>
-      //   )
-      // }
       const menu = (
         <Menu>
-          <Menu.Item>
+          {/* <Menu.Item>
             <span>个人中心</span>
           </Menu.Item>
           <Menu.Item>
             <span>切换账户</span>
-          </Menu.Item>
+          </Menu.Item> */}
           <Menu.Item onClick={this.loginOut}>
             <span>退出</span>
           </Menu.Item>
@@ -81,7 +58,9 @@ class HeaderNav extends Component {
       let createSkin=(data)=>{
         return(
           <Menu onClick={(key)=>{
-            this.setState({index:key.key});
+            // console.log(this.props)
+            this.props.CHANGE_SKIN_COLOR(key.key)
+            // this.setState({index:key.key});
           }}>
             {data.map((item,index)=>{
               return (
@@ -94,7 +73,7 @@ class HeaderNav extends Component {
         )
       }
       return (
-          <div className={style[bgColor[index]]} style={{ height: 64,display: 'flex',justifyContent: 'space-between'}}>
+          <div className={style[bgColor[this.props.index]]} style={{ height: 64,display: 'flex',justifyContent: 'space-between'}}>
               <div className={style.left}>
                   {/* <h1>下厨房</h1>
                   <span>V1.0.1</span>

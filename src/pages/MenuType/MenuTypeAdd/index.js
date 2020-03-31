@@ -46,6 +46,9 @@ class MenuTypeAdd extends Component {
             return message.info('请先上传图片');
         }
         let {menu_name,menu_path,kind} = this.state
+        if(!menu_name) {
+            return message.error('子类名不能为空')
+        }
         let result = await menuTypeApi.addTypes({menu_name,menu_path});
         let {code,msg} = result
         if(code !== 1) {
@@ -69,11 +72,11 @@ class MenuTypeAdd extends Component {
             <div className={style.box}>
                 <Card title='菜谱子类别添加' className={style.card}>
                     <div className={style.Input}>
-                        菜谱名称：<Input style={{ width: 420, marginBottom:30 }} size="large" type='text' value={menu_name} onChange={(e)=>{
+                        菜谱名称：<Input style={{ width: 400, marginBottom:30 }} size="large" type='text' value={menu_name} onChange={(e)=>{
                             this.setState({menu_name:e.target.value})
                         }} /><br/>
                         所属类别：<select value={kind} style={{ width: 150, marginBottom:20 }} onChange={(e)=>{
-                            console.log(e.target.value)
+                            // console.log(e.target.value)
                             this.setState({kind:e.target.value})
                         }} >
                             {types.map((item)=>{

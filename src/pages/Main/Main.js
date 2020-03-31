@@ -10,7 +10,7 @@ export default class Main extends Component {
   render() {
     return (
       <div>
-        <Layout style={{ minHeight: '100vh' }}>
+        <Layout style={{ minHeight: '100vh'}}>
           {/* 侧边栏 */}
         <Sider >
           <div className="logo" >
@@ -22,7 +22,8 @@ export default class Main extends Component {
           <Header className="site-layout-background" style={{ padding: 0 }} >
             <HeaderNav></HeaderNav>
           </Header>
-          <Content style={{ margin: '0px 20px' , paddingTop: '20px', boxSizing: 'border-box'}}> {/* , paddingTop: '20px', boxSizing: 'border-box'  */}
+          <Content style={{ margin: '0px 20px' , paddingTop: '20px', boxSizing: 'border-box'}}> 
+          {/* , paddingTop: '20px', boxSizing: 'border-box'  */}
           {/* <Content> */}
             { this.props.children}
           </Content>

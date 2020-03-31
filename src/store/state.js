@@ -1,3 +1,4 @@
 export default {
-  loginState: false
+  loginState: false,
+  index:2
 }

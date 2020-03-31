@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import style from './index.module.less';
+// import style from './index.module.less';
 import menuTypeApi from '../../../api/menuTypeApi';
-import {Card,Button,Popconfirm,Tabs, Table, message, Modal, Input} from 'antd';
+import {Card,Button,Popconfirm,Tabs, Table, message, Modal, Input, Spin, Empty} from 'antd';
 import imgUpload from '../../../api/imgUpload';
 // import MenuTypeUpdate from '../TypeUpdate';
 const { TabPane } = Tabs;
@@ -14,6 +14,7 @@ class MenuType extends Component {
         typeList:[],
         idList:[],
         mode:'left',
+        flag:true,
         visible: false,
         _id: '',
         menu_name: '默认名字',
@@ -30,8 +31,6 @@ class MenuType extends Component {
                 return(
                     <div>
                         <Button style={{marginLeft:2}} type='primary' size='small' onClick={()=>{
-                            // console.log(record)
-                            // this.props.history.push('/admin/goodsUpdate?'+record._id);
                             this.showModal(record)
                         }}>修改</Button>
                         <Popconfirm
@@ -69,12 +68,15 @@ class MenuType extends Component {
         }
         this.setState({menu_path:path});
     }
-    addTypes = async ()=>{
+    updateTypes = async ()=>{
         if(!this.state.menu_path) {
             return message.info('请先上传图片');
         }
         let {_id,menu_name,menu_path} = this.state
-        console.log(111,_id,menu_name,menu_path)
+        if(!menu_name) {
+            return message.error('菜谱子类名不能为空')
+        }
+        // console.log(111,_id,menu_name,menu_path)
         let {code,msg} = await menuTypeApi.updateType({_id,menu_name,menu_path});
         if(code !== 1) {
             return message.error(msg);
@@ -92,8 +94,8 @@ class MenuType extends Component {
         this.setState({visible: false});
       };
     del = async (infos)=>{
-        let {_id,Fid,Fname} = infos
-        console.log(_id,Fid,Fname)
+        let {_id,Fid} = infos
+        // console.log(_id,Fid,Fname)
         let {code,msg} = await menuTypeApi.removeFromKinds(Fid,_id)
         if(code !== 1) {
             return message.error(msg)
@@ -135,7 +137,7 @@ class MenuType extends Component {
                 dataList.push({name:key,typeList:obj[key]});   
             }
         }
-        this.setState({dataList:dataList,kindsList:list})
+        this.setState({dataList:dataList,kindsList:list,flag:false})
     }
     getTypeList = async ()=>{
         let idList = [];
@@ -155,13 +157,14 @@ class MenuType extends Component {
         this.getTypeList();
     }
     render() { 
-        let {dataList,mode,columns,menu_name,menu_path} = this.state;
+        let {dataList,mode,columns,menu_name,menu_path,flag} = this.state;
         return (
-            <div className={style.box}>
-                <Card title='菜谱子类列表' className={style.card}>
+            <div>
+                <Card title='菜谱子类列表'>
                     <Button type='primary' onClick={()=>{
                         this.props.history.push('/admin/main/menuTypeAdd');
                     }}>添加</Button>
+<<<<<<< HEAD
                     <Tabs defaultActiveKey="1" tabPosition={mode} style={{ height: '550px', marginTop: '50px' }} keyboard animated>
                         {dataList.map((item,index)=>{
                             return(
@@ -171,11 +174,26 @@ class MenuType extends Component {
                             )
                         })}
                     </Tabs>
+=======
+                    <Spin tip="Loading..." size="large" spinning={flag}>
+                        {dataList.length?                       
+                        <Tabs defaultActiveKey="1" tabPosition={mode} style={{ height: 550, marginTop:30 }} keyboard animated>
+                            {dataList.map((item,index)=>{
+                                return(
+                                    <TabPane tab={item.name} key={index}>
+                                        <Table scroll={{y:400,x:700}} columns={columns} pagination={true} dataSource={item.typeList} rowKey='_id' ></Table>
+                                    </TabPane>
+                                )
+                            })}
+                        </Tabs>:<Empty />
+                        }
+                    </Spin>
+>>>>>>> xwy
                 </Card>
                 <Modal
                 title='修改菜谱子类'
                 visible={this.state.visible}
-                onOk={this.addTypes}
+                onOk={this.updateTypes}
                 onCancel={this.hideModal}
                 okText="确认"
                 cancelText="取消">
