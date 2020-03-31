@@ -1,4 +1,4 @@
 export default {
   loginState: false,
-  index:2
+  index:0
 }
