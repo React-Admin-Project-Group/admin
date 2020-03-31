@@ -3,7 +3,7 @@ import style from './index.module.less';
 import menuTypeApi from '../../../api/menuTypeApi';
 import imgUpload from '../../../api/imgUpload';
 import { Card, Button, message, Input, } from 'antd';
-let routerPath = 'http://localhost:3000';
+let routerPath = 'http://114.215.148.3:3000';
 class MenuTypeAdd extends Component {
     state = {
         "menu_name":"默认名字",
@@ -16,7 +16,8 @@ class MenuTypeAdd extends Component {
         if(code !== 1) {
             return message.error(msg)
         }
-        this.setState({types:list})
+        // console.log(list[0]['_id'])
+        this.setState({types:list,kind:list[0]['_id']})
     }
     upload = async ()=>{
         let file = this.refs.img.files[0]
@@ -50,10 +51,12 @@ class MenuTypeAdd extends Component {
             return message.error(msg);
         }
         let {list} = result
+        // console.log(list)
         let child_id = list[0]['_id']
         let _id = kind
         let infos = await menuTypeApi.addKinds({_id,child_id})
         if(infos.code !== 1) {
+            await menuTypeApi.deleteType(child_id)
             return message.error(infos.msg)
         }
         message.success('菜谱子类添加成功');
@@ -69,7 +72,8 @@ class MenuTypeAdd extends Component {
                             this.setState({menu_name:e.target.value})
                         }} /><br/>
                         所属类别：<select value={kind} style={{ width: 150, marginBottom:20 }} onChange={(e)=>{
-                            this.setState({kind:e.target.value});
+                            console.log(e.target.value)
+                            this.setState({kind:e.target.value})
                         }} >
                             {types.map((item)=>{
                                 return(

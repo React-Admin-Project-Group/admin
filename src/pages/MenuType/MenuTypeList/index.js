@@ -5,7 +5,8 @@ import {Card,Button,Popconfirm,Tabs, Table, message, Modal, Input} from 'antd';
 import imgUpload from '../../../api/imgUpload';
 // import MenuTypeUpdate from '../TypeUpdate';
 const { TabPane } = Tabs;
-let routerPath = 'http://localhost:3000';
+let routerPath = 'http://114.215.148.3:3000';
+// let routerPath = 'http://localhost:3000';
 class MenuType extends Component {
     state = {
         dataList:[],
@@ -161,7 +162,7 @@ class MenuType extends Component {
                     <Button type='primary' onClick={()=>{
                         this.props.history.push('/admin/main/menuTypeAdd');
                     }}>添加</Button>
-                    <Tabs defaultActiveKey="1" tabPosition={mode} style={{ height: 600, marginTop:50 }}>
+                    <Tabs defaultActiveKey="1" tabPosition={mode} style={{ height: 550, marginTop:50 }} keyboard animated>
                         {dataList.map((item,index)=>{
                             return(
                                 <TabPane tab={item.name} key={index}>
