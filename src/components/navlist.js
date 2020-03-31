@@ -69,12 +69,12 @@ export default [
                 icon:'default',
                 path:'/admin/main/banner/list'
             },
-            {
-                key:'6-2',
-                title:'修改广告',
-                icon:'default',
-                path:'/admin/main/banner/amend'
-            }
+            // {
+            //     key:'6-2',
+            //     title:'修改广告',
+            //     icon:'default',
+            //     path:'/admin/main/banner/amend'
+            // }
         ]
     },
     {
