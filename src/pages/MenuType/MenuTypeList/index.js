@@ -20,14 +20,14 @@ class MenuType extends Component {
         menu_name: '默认名字',
         menu_path: '',
         columns:[
-            {title: 'id',dataIndex: '_id',key: '_id',width:150},
-            {title: '菜谱类别',dataIndex: 'menu_name',key: 'menu_name',width:150},
-            {title: '菜谱图片',dataIndex: 'menu_path',key: 'menu_path',width:150,render(menu_path){
+            // {title: 'id',dataIndex: '_id',key: '_id',width:150},
+            {title: '菜谱类别',dataIndex: 'menu_name',key: 'menu_name',width:120},
+            {title: '菜谱图片',dataIndex: 'menu_path',key: 'menu_path',width:120,render(menu_path){
                 return(
                     <img src={routerPath+menu_path} alt="菜谱图片" style={{width:80}}/>
                 )
             }},
-            {title:'操作',key:'action',width:150,render:(record)=>{
+            {title:'操作',key:'action',width:120,render:(record)=>{
                 return(
                     <div>
                         <Button style={{marginLeft:2}} type='primary' size='small' onClick={()=>{
