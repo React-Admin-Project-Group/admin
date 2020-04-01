@@ -34,7 +34,7 @@ class Main extends Component {
           {/* <Content> */}
             { this.props.children}
           </Content>
-          <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+          <Footer style={{ textAlign: 'center' }}>本后台系统由银河战队提供前端技术支持</Footer>
         </Layout>
       </Layout>
       </div>

@@ -11,7 +11,7 @@ axios.interceptors.request.use(function (config) {
   }
   
   config.headers.authorization = 'Bearer ' + token
-  console.log('添加请求头')
+  // console.log('添加请求头')
   return config;
 }, function (error) {
   return Promise.reject(error);

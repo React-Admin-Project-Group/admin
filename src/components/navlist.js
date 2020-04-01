@@ -2,7 +2,7 @@
 export default [
     {
         key:'1',
-        title:'下厨房后台管理系统',
+        title:'首页',
         icon:'home',
         path:'/admin/main/home'
     },
@@ -11,75 +11,42 @@ export default [
         title:'管理员管理',
         icon:'administrator',
         path:'/admin/main/administrator',
-        /* children:[
-            {
-                key:'2-1',
-                title:'管理员列表',
-                icon:'default',
-                path:'/admin/main/administrator',
-            }
-        ] */
     },
-    /* {
-        key:'3',
-        title:'数据上传模块',
-        icon:'data',
-        children:[
-            {
-                key:'3-1',
-                title:'上传菜谱图片',
-                icon:'default',
-                path:'/admin/main/statistics/img'
-            }
-        ]
-    }, */
     {
         key:'4',
-        title:'菜谱类别管理模块',
+        title:'菜谱类别管理',
         icon:'cookbook',
-        children:[
-            {
-                key:'4-1',
-                title:'添加菜谱分类',
-                icon:'default',
-                path:'/admin/main/cookbook/add'
-            },
-           /*  {
-                key:'4-2',
-                title:'删除菜谱分类',
-                icon:'default',
-                path:'/admin/main/cookbook/delete'
-            }, */
-        ]
+        path:'/admin/main/cookbook/add'
     },
     {
         key:'5',
-        title:'菜谱子类管理模块',
+        title:'菜谱子类别管理',
         icon:'menu',
         path:'/admin/main/menuType'
     },
     {
         key:'6',
-        title:'广告管理模块',
+        title:'广告管理',
         icon:'banner',
-        children:[
+        path:'/admin/main/banner/list'
+       /*  children:[
             {
                 key:'6-1',
                 title:'广告列表',
                 icon:'default',
-                path:'/admin/main/banner/list'
-            },
+                
+            }, */
            /*  {
                 key:'6-2',
                 title:'修改广告',
                 icon:'default',
                 path:'/admin/main/banner/amend'
             } */
-        ]
+        // ]
     },
     {
         key:'7',
-        title:'用户上传审核模块',
+        title:'用户上传审核',
         icon:'audit',
         children:[
             {
@@ -98,7 +65,7 @@ export default [
     },
     {
         key:'8',
-        title:'数据统计模块',
+        title:'数据统计',
         icon:'data',
         children:[
             {
@@ -123,7 +90,7 @@ export default [
     },
     {
         key:'10',
-        title:'用户代办事项模块',
+        title:'用户代办事项',
         icon:'user',
         children:[
             {

@@ -123,7 +123,6 @@ export default class Administrator extends Component {
               pageSize={pageSize}
               className={Style.paginationWrapper}
               onChange={(page) => {
-                console.log('页码数发生变化:', page)
                 // 只要页码数发生改变就会触发
                 this.setState({page}, () => {
                   this.refreshList()
@@ -144,7 +143,6 @@ export default class Administrator extends Component {
                     for (let item of adminList) {
                       exportData.push([item.username, item.authority === 0 ? '普通管理员' : '超级管理员'])
                     }
-                    // console.log(exportData)
                     let wb = XLSX.utils.book_new()
                     let ws =XLSX.utils.aoa_to_sheet(exportData)
                     XLSX.utils.book_append_sheet(wb, ws, 'SheetJS')

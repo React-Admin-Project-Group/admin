@@ -1,19 +1,34 @@
 import React from 'react'
-import Login from '../pages/Login/Login'
-import Main from '../pages/Main/Main'
-
-import Home from '@pages/Home/Home'
-import Administrator from '../pages/Administrator/Administrator'
-import MenuTypeList from '../pages/MenuType/MenuTypeList'
-import MenuTypeAdd from '../pages/MenuType/MenuTypeAdd'
-import ErrorPage from '@pages/NotFound/NotFound'
-import BannerList from '@pages/Banner/BannerList'
-import BannerAmend from '@pages/Banner/BannerAmend'
-import KindList from '../pages/MenuTypeBig/KindList'
-import KindAdd from '../pages/MenuTypeBig/KindAdd'
-import KindUpdate from '../pages/MenuTypeBig/KindUpdate'
-
+import loadable from '../utils/loadable'
 import { Route } from 'react-router-dom'
+
+// import Login from '../pages/Login/Login'
+// import Main from '../pages/Main/Main'
+// import Home from '@pages/Home/Home'
+// import Administrator from '../pages/Administrator/Administrator'
+// import MenuTypeList from '../pages/MenuType/MenuTypeList'
+// import MenuTypeAdd from '../pages/MenuType/MenuTypeAdd'
+// import ErrorPage from '@pages/NotFound/NotFound'
+// import BannerList from '@pages/Banner/BannerList'
+// import BannerAmend from '@pages/Banner/BannerAmend'
+// import KindList from '../pages/MenuTypeBig/KindList'
+// import KindAdd from '../pages/MenuTypeBig/KindAdd'
+// import KindUpdate from '../pages/MenuTypeBig/KindUpdate'
+
+const Login = loadable(() => import('../pages/Login/Login'))
+const Main = loadable(() => import('../pages/Main/Main'))
+const Home = loadable(() => import('@pages/Home/Home'))
+const Administrator = loadable(() => import('../pages/Administrator/Administrator'))
+const MenuTypeList = loadable(() => import('../pages/MenuType/MenuTypeList'))
+const MenuTypeAdd = loadable(() => import('../pages/MenuType/MenuTypeAdd'))
+const ErrorPage = loadable(() => import('@pages/NotFound/NotFound'))
+const BannerList = loadable(() => import('@pages/Banner/BannerList'))
+const BannerAmend = loadable(() => import('@pages/Banner/BannerAmend'))
+const KindList = loadable(() => import('../pages/MenuTypeBig/KindList'))
+const KindAdd = loadable(() => import('../pages/MenuTypeBig/KindAdd'))
+const KindUpdate = loadable(() => import('../pages/MenuTypeBig/KindUpdate'))
+
+
 
 const routerConfig  = [
   {

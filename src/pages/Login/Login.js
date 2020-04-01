@@ -10,12 +10,11 @@ import ActionCreator from '../../store/actionCreator'
 import { bindActionCreators } from 'redux'
 class Login extends Component {
   onFinish = values => {
-    console.log('Received values of form: ', values);
     const { username, password, remember } = values
     this.login(username, password, remember)
   }
   onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo)
+    // console.log('Failed:', errorInfo)
   }
 
   login = (username, password, remember) => {
@@ -90,7 +89,7 @@ class Login extends Component {
          
         </div>
         <div className={style.bottom}>
-          <div>Copyright 你的公司名称 by H-ui.admin v3.1</div>
+          <div>本后台系统由银河战队提供前端技术支持</div>
         </div>
       </div>
 
