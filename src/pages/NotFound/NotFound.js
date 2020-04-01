@@ -6,8 +6,7 @@ export default class NotFound extends Component {
   render() {
     return (
       <div className={style.wrapper}>
-        <img src={imgUrl} className={style.bg} alt='背景图'>
-        </img>
+        <img src={imgUrl} className={style.bg} alt='背景图' /> {/* src={imgUrl}  */}
         <Button className={style.button}  onClick={()=>{
           this.props.history.replace('/admin/main/home')
         }}>回到首页</Button>

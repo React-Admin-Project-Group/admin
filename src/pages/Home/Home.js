@@ -29,13 +29,6 @@ export default class Home extends Component {
       ip: '0.0.0.0',
       loginCount: 0,
       columns: [
-       /*  {
-          title: '用户名',
-          dataIndex: 'user_id',
-          key: 'user_id',
-          align: 'center',
-          width: '15%'
-        }, */
         {
           title: '内容',
           dataIndex: 'log',
@@ -50,8 +43,9 @@ export default class Home extends Component {
           width: '25%',
           align: 'center',
           render: (record) => {
-            let times = record.split('T')
-            return times[0] + ' ' + times[1].slice(0, times[1].length - 5)
+            /* let times = record.split('T')
+            return times[0] + ' ' + times[1].slice(0, times[1].length - 5) */
+            return new Date(record).toLocaleString()
           }
         },
         {
@@ -79,7 +73,6 @@ export default class Home extends Component {
               onText='确认'
               cancelText='取消'
             >
-              {/* <Button type='danger'>删除</Button> */}
               <DeleteOutlined />
             </Popconfirm>
           )
@@ -99,7 +92,6 @@ export default class Home extends Component {
   };
 
   onSelectChange = selectedRowKeys => {
-    // console.log('selectedRowKeys changed: ', selectedRowKeys);
     this.setState({ selectedRowKeys });
   };
 
@@ -144,7 +136,7 @@ export default class Home extends Component {
         const { last, count } = res
         const { createTime, ip } = last
         this.setState({
-          createTime,
+          createTime: new Date(createTime).toLocaleString(),
           ip,
           loginCount: count
         })
@@ -187,15 +179,13 @@ export default class Home extends Component {
     }
   }
   onChange = (value, dateString) => {
-    // console.log('Selected Time: ', value);
-    // console.log('Formatted Selected Time: ', dateString);
     this.setState({
       startTime: dateString[0],
       endTime: dateString[1]
     })
   }
   onOk = (value) => {
-    console.log('onOk: ', value);
+    // console.log('onOk: ', value);
   }
 
   render() {
@@ -210,7 +200,7 @@ export default class Home extends Component {
         <Card>
           <Title level={3}>欢迎使用下厨房后台管理系统</Title>
           <p>登录次数: <span>{loginCount}</span></p>
-          <p>上次登录ip: <span>{ip}</span> 上次登录时间: <span>{createTime}</span></p>
+          <p>上次登录ip: <span>{ip}</span>&nbsp;&nbsp;上次登录时间: <span>{createTime}</span></p>
           
           {/* 表格头部信息 */}
           <div className={Style.searchWrapper}>
@@ -277,11 +267,10 @@ export default class Home extends Component {
                     for (let item of logList) {
                       exportData.push([item.log, item.createTime, item.ip])
                     }
-                    // console.log(exportData)
                     let wb = XLSX.utils.book_new()
                     let ws =XLSX.utils.aoa_to_sheet(exportData)
                     XLSX.utils.book_append_sheet(wb, ws, 'SheetJS')
-                    XLSX.writeFile(wb, '管理员数据.xlsx', { compression: true })
+                    XLSX.writeFile(wb, '管理员日志数据.xlsx', { compression: true })
                   }}
                 >导出当前数据</Button>
               </div>

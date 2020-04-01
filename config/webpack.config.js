@@ -24,7 +24,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
-
+const CompressionPlugin = require("compression-webpack-plugin");
 const postcssNormalize = require('postcss-normalize');
 
 const appPackageJson = require(paths.appPackageJson);
@@ -531,6 +531,38 @@ module.exports = function(webpackEnv) {
       ],
     },
     plugins: [
+     /*  new webpack.optimize.minimize({           //清除打包后文件中的注释,和copyright信息
+        output: {
+          comments: false,
+        },
+        compress: {
+          warnings: false
+      }
+    }), */
+      // new webpack.optimize.CommonsChunkPlugin('vendor',  'vendor.js'),
+      new webpack.DefinePlugin({                                        // 把引入的React切换到产品版本
+        'process.env.NODE_ENV': '"production"'
+      }),
+      new CompressionPlugin({
+        // asset: '[path].gz[query]', //目标资源名称。[file] 会被替换成原资源。[path] 会被替换成原资源路径，[query] 替换成原查询字符串
+        algorithm: 'gzip',//算法
+        test: new RegExp(
+             '\\.(js|css)$'    //压缩 js 与 css
+        ),
+        threshold: 10240,//只处理比这个值大的资源。按字节计算
+        minRatio: 0.8//只有压缩率比这个值小的资源才会被处理
+      }),
+      new webpack.optimize.SplitChunksPlugin(
+        {
+          chunks: "all",
+          minSize: 20000,
+          minChunks: 1,
+          maxAsyncRequests: 5,
+          maxInitialRequests: 3,
+          name: true
+        }
+      ),
+      // new webpack.optimize.SplitChunks ('vendor',  'vendor.js'),
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
