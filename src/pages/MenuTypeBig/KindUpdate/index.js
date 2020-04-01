@@ -19,10 +19,13 @@ class MenuUpdate extends Component {
     }
     // 修改方法
     alterAdd= async ()=>{
-        let {_id}=this.props.match.params
+        let {id}=this.props.match.params
+        let _id=id
         let {kind_name}=this.state
         if(kind_name!==''){
-            await MenuAddApi.alter({_id,kind_name})
+            let {code,msg}=await MenuAddApi.alter({_id,kind_name})
+            if(code!==1){return message.error(msg)}
+            message.success('修改成功')
             this.props.history.replace('/admin/main/cookbook/add')
         }else{
             message.error('修改的类别不能为空')

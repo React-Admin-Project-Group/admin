@@ -14,7 +14,9 @@ class NavList extends Component {
                     return (
                         <Button type='primary' size='small' onClick={() => {
                             // 跳转到修改页面 传递当前的id
+                            console.log(record)
                             this.props.history.replace('/admin/main/cookbook/menuupdate/' + record._id)
+                            
                         }}>修改</Button>
                     )
                 },
@@ -47,7 +49,8 @@ class NavList extends Component {
     //删除分类
     delKinds = async (_id) => {
         let { code, msg } = await navListApi.del(_id)
-        if (!code) { return message.error(msg) }
+        if (code!==1) { return message.error(msg) }
+        message.success('删除成功')
         this.getListData()
     }
     getListData = async () => {
