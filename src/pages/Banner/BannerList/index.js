@@ -2,6 +2,8 @@ import React, {Component}  from 'react'
 // import style from 'index.module.less'
 import {Card, Table, Button, Spin, message, Pagination, Popconfirm, Modal, notification, Input } from 'antd'
 import bannerApi from '../../../api/bannerApi'
+import Item from 'antd/lib/list/Item'
+import XLSX from 'xlsx'
 
 class BannerList extends Component{
     state = {
@@ -14,16 +16,12 @@ class BannerList extends Component{
         visible:false,
         dataSource:[],
         spinning:false,
+        thead:['_id','id','name','type'],//自定义的导出表头
         columns:[
             {
               title: '_id',
               dataIndex: '_id',
               key: '_id',
-            },
-            {
-              title: 'ID',
-              dataIndex: 'banner_id',
-              key: 'banner_id',
             },
             {
                 title: 'name',
@@ -62,6 +60,31 @@ class BannerList extends Component{
                 }
             }
           ]
+    }
+    //导出xlsx数据
+    exprotxlsx=async ()=>{
+        //获取表头数据
+        let thead = this.state.thead
+        // console.log(thead)
+        //获取导出的数据
+        let {list} = await bannerApi.bannerlist(1,10000)
+        // console.log(list)
+        let data = list.map((item)=>{
+            let arr = []
+            for (const key in item) {
+                arr.push(item[key])
+            }
+            return arr
+        })
+        // console.log(data)
+        //将数据合并成数组
+        let result = [thead,...data]
+        // console.log(result)
+        //导出
+        let sheet = XLSX.utils.aoa_to_sheet(result)
+        let wb = XLSX.utils.book_new()
+        XLSX.utils.book_append_sheet(wb,sheet)
+        XLSX.writeFile(wb,'广告数据列表.xlsx')
     }
     //和模态框里面的数据做关联
     handleOk= async ()=>{
@@ -118,7 +141,7 @@ class BannerList extends Component{
         this.getBannerList()
     }
     render(){
-        let { spinning, dataSource, columns, page, pageSize, count, visible, id, name, type } = this.state
+        let { spinning, dataSource, columns, page, pageSize, count, visible, name, type } = this.state
         return(
             <div>
                 <Card title='广告管理列表' >
@@ -130,6 +153,10 @@ class BannerList extends Component{
                         style={{height:'360px',marginTop:'10px'}}
                     ></Table>
                 </Spin>
+                {/* 导出数据 */}
+                <Button type="primary" onClick={this.exprotxlsx}
+                    style={{float:'right'}}
+                >导出数据</Button>
              {/* 分页器 */}
             <Pagination  current={page} total={count} showQuickJumper pageSize={pageSize}
                 onChange={(page,pageSize)=>{
@@ -138,7 +165,7 @@ class BannerList extends Component{
                     this.getBannerList()
                 })   
                 }}
-                style={{float:'right'}}
+                style={{float:'right',marginRight:'10px'}}
                 />
             </Card>
             {/* 添加的模态框 */}
@@ -148,11 +175,6 @@ class BannerList extends Component{
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
             >
-               广告ID:<br/><Input size='large' type='text' style={{width:'280px',height:'30px'}} 
-                value={id} onChange={(e)=>{
-                    this.setState({id:e.target.value})
-                }} placeholder='需要添加的广告id'
-               /><br/>
                广告名字:<br/><Input size='large' type='text' style={{width:'280px',height:'30px'}} 
                 value={name} onChange={(e)=>{
                     this.setState({name:e.target.value})
