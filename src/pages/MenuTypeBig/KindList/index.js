@@ -7,8 +7,8 @@ class NavList extends Component {
         flag:true,
         list: [],//列表数据
         columns: [
-            { title: '_id', dataIndex: '_id', key: '_id', width: '40%'},
-            { title: '类别', dataIndex: 'kind_name', key: 'kind_name', width: '30%' },
+            // { title: 'id', dataIndex: '_id', key: '_id', width: '40%'},
+            { title: '类别', dataIndex: 'kind_name', key: 'kind_name', width: '70%' },
             {
                 title: '修改', render: (record) => {
                     return (
@@ -66,7 +66,7 @@ class NavList extends Component {
                     <Button type='primary' onClick={() => {
                         this.props.history.push('/admin/main/cookbook/menuadd')
                     }}>添加菜谱类别</Button>
-                    <Spin tip='Loading...' size='large' spinning={flag}>
+                    <Spin tip='Loading...' size='large' spinning={flag} >
                         <Table scroll={{ y: 400, x: 600 }} columns={columns} dataSource={list} rowKey='_id'></Table>
                     </Spin>
                 </Card>
