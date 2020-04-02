@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import imgUrl from '../../static/404.png'
+import imgUrl from '../../static/404.jpg'
 import style from './index.module.less'
 import { Button } from 'antd'
 export default class NotFound extends Component {
