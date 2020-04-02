@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { HashRouter, Switch } from 'react-router-dom'
-// import { Route,Redirect } from 'react-router-dom';
+/* import { Route,Redirect } from 'react-router-dom';
 
-/* import loadable from '../utils/loadable'
+import loadable from '../utils/loadable'
 const Login = loadable(() => import('../pages/Login/Login'))
 const Main = loadable(() => import('../pages/Main/Main'))
 const Home = loadable(() => import('@pages/Home/Home'))
@@ -23,7 +23,27 @@ export default class PageRouter extends Component {
         <HashRouter>
           <Switch>
             <FrontedAuth></FrontedAuth>
-            {/* <Route path="/login" component={Login}></Route> */}
+            {/* <Route path="/login" component={Login}></Route>
+            <Route path="/" render={ ()=> {
+              return (
+                <Fragment>
+                  <Main>
+                    <Route path="/admin/main/home" component={Home}></Route>
+                    <Route path="/admin/main/administrator" component={Administrator}></Route>
+                    <Route path="/admin/main/menuType" component={MenuTypeList}></Route>
+                    <Route path="/admin/main/menuTypeAdd" component={MenuTypeAdd}></Route>
+                    <Route path="/admin/main/banner/list" component={BannerList}></Route>
+                    <Route path="/admin/main/banner/amend/:id" component={BannerAmend}></Route>
+                    <Route path="/admin/main/cookbook/add" component={KindList}></Route>
+                    <Route path="/admin/main/cookbook/menuadd" component={KindAdd}></Route>
+                    <Route path="/admin/main/cookbook/menuupdate/:id" component={KindUpdate}></Route>
+                    <Route path="/login" component={Login}></Route>
+                  </Main>
+                </Fragment>
+              )
+            }}>
+            </Route> */}
+            
           </Switch>
         </HashRouter>
       </Fragment>

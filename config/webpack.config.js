@@ -28,7 +28,7 @@ const CompressionPlugin = require("compression-webpack-plugin");
 const postcssNormalize = require('postcss-normalize');
 
 const appPackageJson = require(paths.appPackageJson);
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
@@ -134,11 +134,11 @@ module.exports = function(webpackEnv) {
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
     // Stop compilation early in production
     bail: isEnvProduction,
-    devtool: isEnvProduction
+    /* devtool: isEnvProduction
       ? shouldUseSourceMap
         ? 'source-map'
         : false
-      : isEnvDevelopment && 'cheap-module-source-map',
+      : isEnvDevelopment && 'cheap-module-source-map', */
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.
     entry: [
@@ -181,13 +181,13 @@ module.exports = function(webpackEnv) {
       // We inferred the "public path" (such as / or /my-project) from homepage.
       publicPath: paths.publicUrlOrPath,
       // Point sourcemap entries to original disk location (format as URL on Windows)
-      devtoolModuleFilenameTemplate: isEnvProduction
+      /* devtoolModuleFilenameTemplate: isEnvProduction
         ? info =>
             path
               .relative(paths.appSrc, info.absoluteResourcePath)
               .replace(/\\/g, '/')
         : isEnvDevelopment &&
-          (info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')),
+          (info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')), */
       // Prevents conflicts when multiple webpack runtimes (from different apps)
       // are used on the same page.
       jsonpFunction: `webpackJsonp${appPackageJson.name}`,
@@ -531,15 +531,6 @@ module.exports = function(webpackEnv) {
       ],
     },
     plugins: [
-     /*  new webpack.optimize.minimize({           //清除打包后文件中的注释,和copyright信息
-        output: {
-          comments: false,
-        },
-        compress: {
-          warnings: false
-      }
-    }), */
-      // new webpack.optimize.CommonsChunkPlugin('vendor',  'vendor.js'),
       new webpack.DefinePlugin({                                        // 把引入的React切换到产品版本
         'process.env.NODE_ENV': '"production"'
       }),
@@ -562,6 +553,7 @@ module.exports = function(webpackEnv) {
           name: true
         }
       ),
+      new BundleAnalyzerPlugin(),
       // new webpack.optimize.SplitChunks ('vendor',  'vendor.js'),
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
