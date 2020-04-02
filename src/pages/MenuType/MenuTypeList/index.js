@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import menuTypeApi from '../../../api/menuTypeApi';
 import {Card,Button,Popconfirm,Tabs, Table, message, Modal, Input, Spin, Empty} from 'antd';
 import imgUpload from '../../../api/imgUpload';
+import XLSX from 'xlsx';
 // import MenuTypeUpdate from '../TypeUpdate';
 const { TabPane } = Tabs;
 // let routerPath = 'http://localhost:3000';
@@ -17,6 +18,7 @@ class MenuType extends Component {
         flag:true,
         visible: false,
         _id: '',
+        tHead:['id','菜谱类别','菜谱图片','父类id','所属类别'],
         menu_name: '默认名字',
         menu_path: '',
         columns:[
@@ -156,6 +158,21 @@ class MenuType extends Component {
         // this.getKindsList();
         this.getTypeList();
     }
+    exportExcel = async ()=>{
+        let {tHead,typeList} = this.state
+        let data = typeList.map((item)=>{
+            let arr = [];
+            for (const key in item) {
+                arr.push(item[key])
+            }
+            return arr;
+        })
+        let result = [tHead,...data]
+        let sheet = XLSX.utils.aoa_to_sheet(result)
+        let book = XLSX.utils.book_new()
+        XLSX.utils.book_append_sheet(book,sheet)
+        XLSX.writeFile(book,'菜谱子类.xlsx')
+    }
     render() { 
         let {dataList,mode,columns,menu_name,menu_path,flag} = this.state;
         return (
@@ -164,6 +181,9 @@ class MenuType extends Component {
                     <Button type='primary' onClick={()=>{
                         this.props.history.push('/admin/main/menuTypeAdd');
                     }}>添加</Button>
+                    <Button type='default' style={{marginLeft:30}} onClick={()=>{
+                        this.exportExcel()
+                    }}>导出</Button>
                     <Spin tip="Loading..." size="large" spinning={flag}>
                         {dataList.length?                       
                         <Tabs defaultActiveKey="1" tabPosition={mode} style={{ height: 550, marginTop:30 }} keyboard animated>
